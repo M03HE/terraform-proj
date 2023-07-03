@@ -1,6 +1,6 @@
-resource "aws_cloudwatch_event_rule" "console" {
-  name        = "capture-aws-sign-in"
-  description = "Capture each AWS Console Sign In"
+resource "aws_cloudwatch_event_rule" "ec2-alert" {
+  name        = "capture-aws-ec2"
+  description = "Capture each AWS ec2 stop and running"
 
   event_pattern = jsonencode({
     "source" : ["aws.ec2"],
@@ -12,7 +12,7 @@ resource "aws_cloudwatch_event_rule" "console" {
 }
 
 resource "aws_cloudwatch_event_target" "sns" {
-  rule      = aws_cloudwatch_event_rule.console.name
+  rule      = aws_cloudwatch_event_rule.ec2-alert.name
   target_id = "SendToSNS"
   arn       = aws_sns_topic.aws_logins.arn
 }
@@ -25,10 +25,6 @@ resource "aws_sns_topic_policy" "default" {
   arn    = aws_sns_topic.aws_logins.arn
   policy = data.aws_iam_policy_document.sns_topic_policy.json
 }
-
-# resource "aws_sns_topic" "topic" {
-#   name = "topic-name"
-# }
 
 resource "aws_sns_topic_subscription" "email-target" {
   topic_arn = aws_sns_topic.aws_logins.arn
@@ -49,19 +45,3 @@ data "aws_iam_policy_document" "sns_topic_policy" {
     resources = [aws_sns_topic.aws_logins.arn]
   }
 }
-
-
-
-
-
-
-# resource "aws_cloudwatch_event_target" "sns-target-start-instance" {
-#   rule      = aws_scheduler_schedule.start-instances-schedule.name
-#   target_id = aws_sns_topic.topic.arn
-#   arn       = aws_sns_topic.topic.arn
-# }
-# resource "aws_cloudwatch_event_target" "sns-target-stop-instance" {
-#   rule      = aws_scheduler_schedule.stop-instances-schedule.name
-#   target_id = aws_sns_topic.topic.arn
-#   arn       = aws_sns_topic.topic.arn
-# }
