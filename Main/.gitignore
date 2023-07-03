@@ -1,0 +1,6 @@
+.terraform/
+.terraform.lock.hcl
+my-key-pair
+my-key-pair.pub
+terraform.tfstate
+terraform.tfstate.backup
