@@ -27,7 +27,7 @@ resource "aws_instance" "web1" {
     }
   }
   provisioner "local-exec" {
-    command = "ansible-playbook -i ${aws_instance.web1.public_ip}, --private-key ${local_file.ssh_key.content} jenkins.yaml"
+    command = "ansible-playbook -i ${self.public_ip}, --private-key ${local_file.ssh_key.content} jenkins.yaml"
   }
 }
 
