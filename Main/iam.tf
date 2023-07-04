@@ -36,25 +36,4 @@ resource "aws_iam_role_policy" "stop-start-instance" {
     ]
   })
 }
-# resource "aws_iam_role_policy" "stop-start-instance" {
-#   name = "test_policy"
-#   role = aws_iam_role.schedule.name
-#   policy = jsonencode({
-#     "Version" : "2012-10-17",
-#     "Statement" : [
-#       {
-#         "Effect" : "Allow",
-#         "Action" : [
-#           "logs:CreateLogGroup",
-#           "logs:CreateLogStream",
-#           "logs:PutLogEvents",
-#           "logs:PutMetricFilter",
-#           "logs:PutRetentionPolicy"
-#         ],
-#         "Resource" : [
-#           "*"
-#         ]
-#       }
-#     ]
-#   })
-# }
+

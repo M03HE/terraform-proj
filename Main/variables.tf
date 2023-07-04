@@ -14,12 +14,6 @@ variable "AMI" {
     eu-west-1 = "ami-01dd271720c1ba44f"
   }
 }
-# variable "AMI" {
-#   type = map(string)
-#   default = {
-#     eu-west-1 = "ami-05432c5a0f7b1bfd0"
-#   }
-# }
 
 variable "azs" {
   type        = list(string)
