@@ -24,6 +24,6 @@ variable "azs" {
 variable "key_pair_name" {
   description = "The name of the ec2 key pair"
   type        = string
-  default     = "devopss"
+  default     = "devops"
 }
 

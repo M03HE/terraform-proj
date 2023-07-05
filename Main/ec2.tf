@@ -1,6 +1,6 @@
 locals {
-  private_key_path = "./devopss.pem"
-  key_name         = "devopss"
+  private_key_path = "./devops.pem"
+  key_name         = "devops"
 }
 
 resource "tls_private_key" "demo_key" {
